@@ -11,6 +11,7 @@ int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
+void reverse_goats(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -58,6 +59,11 @@ int main() {
                 cout << "Displaying goat data.\n";
                 display_trip(trip);
                 break;
+            case 4:
+                cout << "Displaying reversed goat data.\n";
+                reverse_goats(trip);
+                break;
+            
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -126,4 +132,10 @@ int select_goat(list<Goat> trp) {
         cin >> input;
     }
     return input;
+}
+
+void reverse_goats(list<Goat>& trip)
+{
+    trip.reverse();
+    display_trip(trip);
 }
