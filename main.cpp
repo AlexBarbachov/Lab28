@@ -20,6 +20,7 @@ void remove_dupes(list<Goat>& trip);
 void find_oldest(list<Goat>& trip);
 void sort_by_age(list<Goat>& trip);
 void avg_age(list<Goat>& trip);
+void age_by_one_yr(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -95,6 +96,10 @@ int main() {
                 cout << "Finding Average Age.\n";
                 avg_age(trip);
                 break;
+            case 11:
+                cout << "Aging all Goats by 1 year.\n";
+                age_by_one_yr(trip);
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -118,6 +123,7 @@ int main_menu() {
     cout << "[8] Find oldest.\n";
     cout << "[9] Sort Goats by Age.\n";
     cout << "[10] Find average age.\n";
+    cout << "[11] Age all Goats by 1 year.\n";
     cout << "[12] Quit\n";
     cout << "Choice --> ";
     int choice;
@@ -247,4 +253,13 @@ void avg_age(list<Goat>& trip)
 
     cout << fixed << setprecision(2);
     cout << "Average Goat Age: " << avg << " years. " << endl;
+}
+
+void age_by_one_yr(list<Goat>& trip)
+{
+    for (auto &goat : trip)
+    {
+        goat.set_age(goat.get_age() + 1);
+    }
+    display_trip(trip);
 }
