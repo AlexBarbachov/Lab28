@@ -18,6 +18,7 @@ void sort_goats(list<Goat>& trip);
 void find_youngest(list<Goat>& trip);
 void remove_dupes(list<Goat>& trip);
 void find_oldest(list<Goat>& trip);
+void sort_by_age(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -85,6 +86,10 @@ int main() {
                 cout << "Finding oldest.\n";
                 find_oldest(trip);
                 break;
+            case 9:
+                cout << "Sort Goats by age.\n";
+                sort_by_age(trip);
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -106,6 +111,7 @@ int main_menu() {
     cout << "[6] Find Youngest.\n";
     cout << "[7] Remove duplicates.\n";
     cout << "[8] Find oldest.\n";
+    cout << "[9] Sort Goats by Age.\n";
     cout << "[12] Quit\n";
     cout << "Choice --> ";
     int choice;
@@ -210,4 +216,13 @@ void remove_dupes(list<Goat>& trip)
     display_trip(trip);
 }
 
-void 
+void sort_by_age(list<Goat>& trip)
+{
+    trip.sort(
+        [](const Goat& a, const Goat& b){
+            return a.get_age() < b.get_age();
+        }
+    );
+
+    display_trip(trip);
+}
