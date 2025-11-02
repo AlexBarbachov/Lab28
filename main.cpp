@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <cstdlib>
+#include <vector>
 #include <list>
 #include "Goat.h"
 using namespace std;
@@ -13,6 +15,7 @@ void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
 void reverse_goats(list<Goat>& trip);
 void sort_goats(list<Goat>& trip);
+void find_youngest(list<Goat>& trip);
 int main_menu();
 
 int main() {
@@ -68,6 +71,10 @@ int main() {
                 cout << "Sorting goats.\n";
                 sort_goats(trip);
                 break;
+            case 6:
+                cout << "Finding youngest goat.\n";
+                find_youngest(trip);
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -86,6 +93,7 @@ int main_menu() {
     cout << "[3] List goats\n";
     cout << "[4] Reverse Goat List\n";
     cout << "[5] Sort Goats by name\n";
+    cout << "[6] Find Youngest.\n";
     cout << "[12] Quit\n";
     cout << "Choice --> ";
     int choice;
@@ -149,4 +157,15 @@ void sort_goats(list<Goat>& trip)
 {
     trip.sort();
     display_trip(trip);
+}
+
+void find_youngest(list<Goat>& trip)
+{
+    if (trip.empty()) {cout << "No goats in trip."; return;}
+
+    auto youngest = min_element(trip.begin(), trip.end(), [](const Goat& a, const Goat& b) {
+        return a.get_age() < b.get_age();
+    });
+
+    cout << "\nYoungest Goat: " << youngest->get_name() << "(" << youngest->get_age() << " years old)." << endl;
 }
